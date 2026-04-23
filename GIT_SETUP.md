@@ -2,11 +2,16 @@
 
 ## Repository Information
 - **GitHub URL**: https://github.com/abyt2002-alt/ETL_HYOU.git
-- **Current Branch**: `ingestion`
-- **Default Branch**: `ingestion` (no main branch yet)
+- **Branches**:
+  - `ingestion` - Initial ingestion layer implementation
+  - `preprocessing` - Preprocessing layer implementation (current)
 
 ## Branch Strategy
-All development work is done on the `ingestion` branch. Any changes to the platform should be committed to this branch.
+Development is organized by major modules:
+- `ingestion` branch - Layer 1: Data ingestion from Excel to raw PostgreSQL tables
+- `preprocessing` branch - Layer 2: Data preprocessing from raw to curated tables
+
+All changes to the preprocessing layer should be committed to the `preprocessing` branch.
 
 ## Protected Files (Gitignored)
 The following files are excluded from version control for security:
@@ -31,10 +36,18 @@ The following files are excluded from version control for security:
 ```bash
 git clone https://github.com/abyt2002-alt/ETL_HYOU.git
 cd ETL_HYOU
-git checkout ingestion
 ```
 
-2. Copy example environment files:
+2. Choose the branch you want to work on:
+```bash
+# For ingestion layer
+git checkout ingestion
+
+# For preprocessing layer
+git checkout preprocessing
+```
+
+3. Copy example environment files:
 ```bash
 cp .env.example .env
 cp frontend/.env.example frontend/.env
@@ -52,9 +65,13 @@ docker-compose up -d
 
 ## Making Changes
 
-1. Ensure you're on the ingestion branch:
+1. Ensure you're on the correct branch:
 ```bash
+# For ingestion changes
 git checkout ingestion
+
+# For preprocessing changes
+git checkout preprocessing
 ```
 
 2. Make your changes
@@ -67,7 +84,11 @@ git commit -m "Description of changes"
 
 4. Push to GitHub:
 ```bash
+# Push ingestion changes
 git push origin ingestion
+
+# Push preprocessing changes
+git push origin preprocessing
 ```
 
 ## Verifying Gitignore
