@@ -66,14 +66,15 @@ class PreprocessingRepository:
         item = self.db.query(PreprocessingRunItem).filter(PreprocessingRunItem.id == item_id).first()
         if item:
             item.status = status
-            item.rows_read = rows_read
-            item.rows_output = rows_output
-            item.exact_duplicates_found = exact_duplicates_found
-            item.business_duplicates_found = business_duplicates_found
-            item.mapping_matches = mapping_matches
-            item.mapping_unmatched = mapping_unmatched
-            item.unlabeled_count = unlabeled_count
-            item.issues_found = issues_found
+            # Convert numpy types to Python native types
+            item.rows_read = int(rows_read) if rows_read is not None else 0
+            item.rows_output = int(rows_output) if rows_output is not None else 0
+            item.exact_duplicates_found = int(exact_duplicates_found) if exact_duplicates_found is not None else 0
+            item.business_duplicates_found = int(business_duplicates_found) if business_duplicates_found is not None else 0
+            item.mapping_matches = int(mapping_matches) if mapping_matches is not None else 0
+            item.mapping_unmatched = int(mapping_unmatched) if mapping_unmatched is not None else 0
+            item.unlabeled_count = int(unlabeled_count) if unlabeled_count is not None else 0
+            item.issues_found = int(issues_found) if issues_found is not None else 0
             item.error_message = error_message
             item.completed_at = datetime.utcnow()
             self.db.commit()

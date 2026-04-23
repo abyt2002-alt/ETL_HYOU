@@ -51,6 +51,8 @@ class PreprocessingService:
             except Exception as e:
                 failed_count += 1
                 print(f"Error preprocessing {source_name}: {e}")
+                # Rollback the session to recover from failed transaction
+                self.db.rollback()
 
         # Complete the run
         if failed_count == 0:
