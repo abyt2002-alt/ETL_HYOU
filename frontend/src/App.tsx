@@ -5,6 +5,7 @@ import Sources from './pages/Sources'
 import Runs from './pages/Runs'
 import RunDetail from './pages/RunDetail'
 import DataPreview from './pages/DataPreview'
+import Preprocessing from './pages/Preprocessing'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/runs" element={<Runs />} />
           <Route path="/runs/:runId" element={<RunDetail />} />
           <Route path="/data/:tableName" element={<DataPreview />} />
+          <Route path="/preprocessing" element={<Preprocessing />} />
         </Routes>
       </Layout>
     </Router>
